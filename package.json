@@ -10,8 +10,7 @@
     "e2e": "ng e2e",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "cypress:ci": "start-server-and-test cypress:test http://localhost:4200 cypress:run",
-    "cypress:test": "ng serve --configuration=test"
+    "cypress:ci": "start-server-and-test start http://localhost:4200 cypress:run"
   },
   "prettier": {
     "printWidth": 100,
@@ -56,6 +55,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "start-server-and-test": "^2.1.2",
     "typescript": "~5.9.2"
   }
 }

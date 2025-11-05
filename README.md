@@ -1,59 +1,98 @@
-# UserDashboard
+# User Dashboard
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.8.
+Dashboard de gerenciamento de usuários desenvolvido em Angular 20 com gerenciamento de estado usando NgRx.
 
-## Development server
+## Tecnologias
 
-To start a local development server, run:
+- **Angular 20.3.9** - Framework principal
+- **TypeScript 5.9.2** - Linguagem de programação
+- **NgRx 20.1.0** - Gerenciamento de estado (Store, Effects, Entity, Router Store, DevTools)
+- **RxJS 7.8.0** - Programação reativa
+- **SCSS** - Pré-processador CSS
+- **Jasmine + Karma** - Testes unitários
+- **Cypress 15.6.0** - Testes end-to-end
 
-```bash
-ng serve
-```
+## Funcionalidades
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- Listagem de usuários consumindo API externa (JSONPlaceholder)
+- Busca e filtragem de usuários por nome, email ou empresa
+- Visualização detalhada de informações do usuário
+- Tema claro/escuro com persistência em localStorage
+- Design responsivo para mobile e desktop
+- Tratamento de erros e estados de carregamento
 
-## Code scaffolding
+## Arquitetura
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Standalone Components
+O projeto utiliza a arquitetura de standalone components do Angular, eliminando a necessidade de módulos e permitindo maior modularidade e lazy loading otimizado.
 
-```bash
-ng generate component component-name
-```
+### Gerenciamento de Estado com NgRx
+Implementação completa do padrão Redux através do NgRx
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### HTTP Interceptors
+Implementação de interceptors
 
-```bash
-ng generate --help
-```
+- **Headers Interceptor**: Adiciona headers padrão às requisições
+- **Logging Interceptor**: Registra requisições e respostas para debug
+- **Error Interceptor**: Tratamento centralizado de erros HTTP
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## Instalação
 
 ```bash
-ng test
+npm install
 ```
 
-## Running end-to-end tests
+## Execução
 
-For end-to-end (e2e) testing, run:
-
+### Ambiente de Desenvolvimento
 ```bash
-ng e2e
+npm start
+```
+Acesse `http://localhost:4200/`
+
+### Build de Produção
+```bash
+npm run build
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Testes
 
-## Additional Resources
+### Testes Unitários
+```bash
+npm test
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Executa os testes unitários usando Karma e Jasmine com cobertura de código.
+
+### Testes End-to-End
+
+#### Interface interativa
+```bash
+npm run cypress:open
+```
+
+#### Modo headless
+```bash
+npm run cypress:run
+```
+
+#### CI/CD
+```bash
+npm run cypress:ci
+```
+
+#### Scripts
+
+- `npm start` - Inicia servidor de desenvolvimento
+- `npm run build` - Build de produção
+- `npm test` - Executa testes unitários
+- `npm run watch` - Build em modo watch
+- `npm run e2e` - Executa testes E2E
+- `npm run cypress:open` - Abre interface do Cypress
+- `npm run cypress:run` - Executa testes Cypress em headless
+- `npm run cypress:ci` - Executa testes em ambiente CI
+
+## Requisitos do Sistema
+
+- Node.js: ^20.19.0 || ^22.12.0 || >=24.0.0
+- npm: ^6.11.0 || ^7.5.6 || >=8.0.0
