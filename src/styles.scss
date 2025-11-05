@@ -1,1 +1,76 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #34e23c;
+  --primary-hover: #2bc933;
+  --primary-light: #4aff54;
+  --primary-dark: #28b531;
+
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --card-bg: #ffffff;
+  --section-bg: #f3f4f6;
+  --header-bg: #ffffff;
+  --sidebar-bg: #081217;
+  --sidebar-hover: #0a1820;
+
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --text-accent: #34e23c;
+  --text-on-dark: #ffffff;
+  --text-on-dark-secondary: #a0aec0;
+
+  --border-color: #e5e7eb;
+  --border-dark: #1a2733;
+
+  --input-bg: #ffffff;
+  --button-bg: #ffffff;
+  --button-hover-bg: #f9fafb;
+
+  --error-color: #ef4444;
+  --success-color: #34e23c;
+  --warning-color: #f59e0b;
+}
+
+body.dark-theme {
+  --primary-color: #34e23c;
+  --primary-hover: #4aff54;
+  --primary-light: #5fff6a;
+  --primary-dark: #2bc933;
+
+  --bg-primary: #0f1821;
+  --bg-secondary: #1a2733;
+  --card-bg: #1a2733;
+  --section-bg: #243647;
+  --header-bg: #1a2733;
+  --sidebar-bg: #081217;
+  --sidebar-hover: #0d1d28;
+
+  --text-primary: #f9fafb;
+  --text-secondary: #9ca3af;
+  --text-accent: #34e23c;
+  --text-on-dark: #ffffff;
+  --text-on-dark-secondary: #cbd5e0;
+
+  --border-color: #243647;
+  --border-dark: #0a1820;
+
+  --input-bg: #243647;
+  --button-bg: #243647;
+  --button-hover-bg: #2d4357;
+
+  --error-color: #f87171;
+  --success-color: #34e23c;
+  --warning-color: #fbbf24;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background 0.3s ease, color 0.3s ease;
+}

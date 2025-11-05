@@ -1,0 +1,96 @@
+<div class="card__overlay" *ngIf="isEditing" (click)="cancelEdit($event)"></div>
+
+<div class="card" [class.card--editing]="isEditing">
+  <ng-container *ngIf="!isEditing">
+    <div class="card__view" (click)="onCardClick()">
+      <h3 class="card__title">{{ user.name }}</h3>
+      <p class="card__email">{{ user.email }}</p>
+      <p class="card__company">{{ user.company.name }}</p>
+    </div>
+
+    <button
+      class="card__edit-btn"
+      (click)="startEditing($event)"
+      title="Editar usuário"
+      aria-label="Editar usuário">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+      </svg>
+    </button>
+  </ng-container>
+
+  <form [formGroup]="editForm" class="card__form" *ngIf="isEditing" (click)="$event.stopPropagation()">
+    <div class="card__form-group">
+      <label [for]="'name-' + user.id" class="card__label">Nome</label>
+      <input
+        [id]="'name-' + user.id"
+        type="text"
+        formControlName="name"
+        class="card__input"
+        [class.card__input--error]="nameControl?.invalid && nameControl?.touched"
+        placeholder="Nome"
+      />
+      <span class="card__error" *ngIf="nameControl?.invalid && nameControl?.touched">
+        <span *ngIf="nameControl?.errors?.['required']">Nome é obrigatório</span>
+        <span *ngIf="nameControl?.errors?.['minlength']">Nome deve ter pelo menos 3 caracteres</span>
+      </span>
+    </div>
+
+    <div class="card__form-group">
+      <label [for]="'email-' + user.id" class="card__label">Email</label>
+      <input
+        [id]="'email-' + user.id"
+        type="email"
+        formControlName="email"
+        class="card__input"
+        [class.card__input--error]="emailControl?.invalid && emailControl?.touched"
+        placeholder="Email"
+      />
+      <span class="card__error" *ngIf="emailControl?.invalid && emailControl?.touched">
+        <span *ngIf="emailControl?.errors?.['required']">Email é obrigatório</span>
+        <span *ngIf="emailControl?.errors?.['email']">Email inválido</span>
+      </span>
+    </div>
+
+    <div class="card__form-group" formGroupName="company">
+      <label [for]="'company-' + user.id" class="card__label">Empresa</label>
+      <input
+        [id]="'company-' + user.id"
+        type="text"
+        formControlName="name"
+        class="card__input"
+        [class.card__input--error]="companyNameControl?.invalid && companyNameControl?.touched"
+        placeholder="Empresa"
+      />
+      <span class="card__error" *ngIf="companyNameControl?.invalid && companyNameControl?.touched">
+        <span *ngIf="companyNameControl?.errors?.['required']">Empresa é obrigatória</span>
+      </span>
+    </div>
+
+    <div class="card__actions">
+      <button
+        type="button"
+        class="card__btn card__btn--save"
+        [disabled]="editForm.invalid"
+        (click)="saveEdit($event)"
+        title="Salvar alterações">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        Salvar
+      </button>
+      <button
+        type="button"
+        class="card__btn card__btn--cancel"
+        (click)="cancelEdit($event)"
+        title="Cancelar">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,29 @@
+<div class="user-list">
+  <div class="user-list__header">
+    <h1 class="user-list__title">Usuários</h1>
+    <app-search-input (searchChange)="onSearchChange($event)"></app-search-input>
+  </div>
+
+  @if (loading()) {
+    <app-loading-spinner></app-loading-spinner>
+  } @else if (error()) {
+    <app-error-message
+      message="Erro ao carregar usuários"
+      (retry)="loadUsers()">
+    </app-error-message>
+  } @else {
+    <div class="user-list__grid">
+      @for (user of users(); track user.id) {
+        <app-card
+          [user]="user"
+          [isEditingAny]="editingUserId() !== null"
+          (cardClick)="onUserClick($event)"
+          (userEdit)="onUserEdit($event)"
+          (editingStateChange)="onEditingStateChange($event)">
+        </app-card>
+      } @empty {
+        <app-empty-state message="Nenhum usuário encontrado"></app-empty-state>
+      }
+    </div>
+  }
+</div>

@@ -1,0 +1,80 @@
+<div class="user-detail">
+  <button class="user-detail__back-btn" (click)="goBack()">
+    <svg
+      class="user-detail__back-icon"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2">
+      <line x1="19" y1="12" x2="5" y2="12"></line>
+      <polyline points="12 19 5 12 12 5"></polyline>
+    </svg>
+    Voltar
+  </button>
+
+  <app-loading-spinner *ngIf="loading()"></app-loading-spinner>
+  
+  <div class="user-detail__card" *ngIf="!loading() && user() as userData">
+    <div class="user-detail__header">
+      <div class="user-detail__info">
+        <h1 class="user-detail__name">{{ userData.name }}</h1>
+        <p class="user-detail__username">{{ userData.username }}</p>
+      </div>
+    </div>
+
+    <div class="user-detail__grid">
+      <div class="user-detail__section">
+        <h2 class="user-detail__section-title">Informações de Contato</h2>
+        <div class="user-detail__item">
+          <span class="user-detail__label">Email:</span>
+          <span class="user-detail__value">{{ userData.email }}</span>
+        </div>
+        <div class="user-detail__item">
+          <span class="user-detail__label">Telefone:</span>
+          <span class="user-detail__value">{{ userData.phone }}</span>
+        </div>
+        <div class="user-detail__item">
+          <span class="user-detail__label">Site:</span>
+          <span class="user-detail__value">{{ userData.website }}</span>
+        </div>
+      </div>
+
+      <div class="user-detail__section">
+        <h2 class="user-detail__section-title">Endereço</h2>
+        <div class="user-detail__item">
+          <span class="user-detail__label">Rua:</span>
+          <span class="user-detail__value">{{ userData.address.street }}, {{ userData.address.suite }}</span>
+        </div>
+        <div class="user-detail__item">
+          <span class="user-detail__label">Cidade:</span>
+          <span class="user-detail__value">{{ userData.address.city }}</span>
+        </div>
+        <div class="user-detail__item">
+          <span class="user-detail__label">CEP:</span>
+          <span class="user-detail__value">{{ userData.address.zipcode }}</span>
+        </div>
+      </div>
+
+      <div class="user-detail__section">
+        <h2 class="user-detail__section-title">Empresa</h2>
+        <div class="user-detail__item">
+          <span class="user-detail__label">Nome:</span>
+          <span class="user-detail__value">{{ userData.company.name }}</span>
+        </div>
+        <div class="user-detail__item">
+          <span class="user-detail__label">Slogan:</span>
+          <span class="user-detail__value">{{ userData.company.catchPhrase }}</span>
+        </div>
+        <div class="user-detail__item">
+          <span class="user-detail__label">Área:</span>
+          <span class="user-detail__value">{{ userData.company.bs }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <p class="user-detail__no-data" *ngIf="!loading() && !user()">
+    Usuário não encontrado
+  </p>
+</div>

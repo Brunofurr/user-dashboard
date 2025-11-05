@@ -1,0 +1,100 @@
+<aside
+  class="sidebar"
+  [class.sidebar--open]="isOpen"
+  [class.sidebar--mobile]="isMobile">
+
+  @if (isMobile && isOpen) {
+    <div class="sidebar__overlay" (click)="toggleSidebar()"></div>
+  }
+
+  <div class="sidebar__content">
+    <div class="sidebar__header">
+      <div class="sidebar__logo" (click)="!isMobile && toggleSidebar()">
+        <div class="sidebar__logo-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+        @if (isOpen) {
+          <span class="sidebar__app-name">User Dashboard</span>
+        }
+      </div>
+
+      @if (!isMobile) {
+        <button
+          class="sidebar__toggle-btn"
+          (click)="toggleSidebar()"
+          [attr.aria-label]="isOpen ? 'Recolher menu' : 'Expandir menu'">
+          <svg
+            class="sidebar__toggle-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            [class.sidebar__toggle-icon--rotated]="!isOpen">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+      }
+
+      @if (isMobile) {
+        <button class="sidebar__hamburger" (click)="toggleSidebar()" [attr.aria-label]="isOpen ? 'Fechar menu' : 'Abrir menu'">
+          <svg
+            class="sidebar__hamburger-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2">
+            @if (isOpen) {
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            } @else {
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            }
+          </svg>
+        </button>
+      }
+    </div>
+
+    <nav class="sidebar__nav">
+      <a
+        routerLink="/"
+        routerLinkActive="sidebar__nav-item--active"
+        [routerLinkActiveOptions]="{exact: true}"
+        class="sidebar__nav-item"
+        [attr.title]="!isOpen ? 'Dashboard' : null"
+        (click)="isMobile && closeSidebar()">
+        <div class="sidebar__nav-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+        </div>
+        @if (isOpen) {
+          <span class="sidebar__nav-label">Dashboard</span>
+        }
+      </a>
+    </nav>
+
+    <div class="sidebar__footer">
+      <div class="sidebar__theme-toggle" [attr.title]="!isOpen ? 'Alterar tema' : null">
+        <app-theme-toggle
+          [isDarkMode]="isDarkMode"
+          (themeChange)="onThemeChange()">
+        </app-theme-toggle>
+        @if (isOpen) {
+          <span class="sidebar__theme-label">{{ isDarkMode ? 'Modo Escuro' : 'Modo Claro' }}</span>
+        }
+      </div>
+    </div>
+  </div>
+</aside>
