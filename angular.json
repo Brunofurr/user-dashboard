@@ -20,7 +20,7 @@
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "polyfills": [
-              "zone.js" 
+              "zone.js"
             ],
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -91,11 +91,60 @@
               "src/styles.scss"
             ]
           }
+        },
+        "cypress-run": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "user-dashboard:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "user-dashboard:serve:production"
+            }
+          }
+        },
+        "cypress-open": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "watch": true,
+            "headless": false
+          }
+        },
+        "ct": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "user-dashboard:serve",
+            "watch": true,
+            "headless": false,
+            "testingType": "component"
+          },
+          "configurations": {
+            "development": {
+              "devServerTarget": "user-dashboard:serve:development"
+            }
+          }
+        },
+        "e2e": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "user-dashboard:serve",
+            "watch": true,
+            "headless": false
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "user-dashboard:serve:production"
+            }
+          }
         }
       }
     }
   },
   "cli": {
-    "analytics": "bb285a2c-934c-4151-a456-42c787a6122b"
+    "analytics": "bb285a2c-934c-4151-a456-42c787a6122b",
+    "schematicCollections": [
+      "@cypress/schematic",
+      "@schematics/angular"
+    ]
   }
 }

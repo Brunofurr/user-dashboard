@@ -6,7 +6,12 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "e2e": "ng e2e",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "cypress:ci": "start-server-and-test cypress:test http://localhost:4200 cypress:run",
+    "cypress:test": "ng serve --configuration=test"
   },
   "prettier": {
     "printWidth": 100,
@@ -41,8 +46,10 @@
     "@angular/cli": "^20.3.8",
     "@angular/compiler-cli": "^20.3.0",
     "@angular/platform-browser-dynamic": "^20.3.9",
+    "@cypress/schematic": "^4.1.4",
     "@ngrx/store": "^20.1.0",
     "@types/jasmine": "~5.1.0",
+    "cypress": "^15.6.0",
     "jasmine-core": "~5.9.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
